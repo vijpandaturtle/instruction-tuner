@@ -2,11 +2,9 @@ import csv
 import os
 import openai
 
-# OPENAI Config
-openai.api_key = "YOUR_OPENAI_API_KEY"
-model_name = "gpt-4-1106-preview"
-
-def generate_output(prompt_text):
+def generate_output(openai_api_key, prompt_text):
+    openai.api_key = openai_api_key
+    model_name = "gpt-4-1106-preview"
     try:
         # Make a call to the OpenAI API
         response = openai.Completion.create(

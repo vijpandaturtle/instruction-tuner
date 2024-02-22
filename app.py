@@ -14,6 +14,7 @@ def main():
         st.session_state.content = "Instruction Tuner"
     
     text_option = st.sidebar.selectbox("Select Text Option", ["Text from CSV", "Text from Folder", "Manual"])
+    openai_api_key = st.sidebar.text_area("Enter OpenAI API Key")
  
     if text_option == "Text from CSV":
         csv_path = st.sidebar.text_input("Enter CSV File Path:")
@@ -37,7 +38,7 @@ def main():
     if col1.button("Generate Output"):
         # Generate output with an LLM model
         if generated_output is None:
-            st.session_state.output_text = generate_output(st.session_state.prompt_text)
+            st.session_state.output_text = generate_output(openai_api_key, st.session_state.prompt_text)
 
     if col2.button("Submit to DB"):
         # Push to a local/cloud database
