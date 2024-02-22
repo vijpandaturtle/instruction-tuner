@@ -1,4 +1,4 @@
-# 𝑰𝒏𝒔𝒕𝒓𝒖𝒄𝒕ion 𝑻𝒖𝒏𝒆𝒓
+# 𝑳𝑳𝑴 𝑰𝒏𝒔𝒕𝒓𝒖𝒄𝒕ion 𝑻𝒖𝒏𝒆𝒓
 
 <p align="center">
   <img src="assets/blackboard.png" alt="Instruction Tuner" width="200">
