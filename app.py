@@ -1,9 +1,10 @@
-import streamlit as st
 import os
+
 import pandas as pd
+import streamlit as st
+
+from src.text_data_handlers import flow_text_from_csv, flow_text_from_directory
 from src.utils import submit_to_db
-from src.text_data_handlers import (flow_text_from_csv,
-                                    flow_text_from_directory)
 
 
 def main():
@@ -11,25 +12,17 @@ def main():
  
     if 'content' not in st.session_state:
         st.session_state.content = "Instruction Tuner"
-
-    if 'selected_option' not in st.session_state:
-        st.session_state.selected_option = None
-
+    
     text_option = st.sidebar.selectbox("Select Text Option", ["Text from CSV", "Text from Folder", "Manual"])
  
-    # Check if the selected option is different from the previous one
-    if st.session_state.selected_option != selected_option:
-        st.session_state.selected_option = selected_option
-        st.session_state.counter = 0  # Reset the session state index
-    
     if text_option == "Text from CSV":
-        csv_path = st.text_input("Enter CSV File Path:")
+        csv_path = st.sidebar.text_input("Enter CSV File Path:")
         if os.path.exists(csv_path):
             flow_text_from_csv(csv_path)
         else:
             st.write("Please enter a valid path.")
     elif text_option == "Text from Folder":
-        folder_path = st.text_input("Enter Folder Path:")
+        folder_path = st.sidebar.text_input("Enter Folder Path:")
         if os.path.exists(folder_path):
             flow_text_from_directory(folder_path)
         else:

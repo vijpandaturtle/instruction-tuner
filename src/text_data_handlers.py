@@ -1,6 +1,8 @@
-import streamlit as st
 import os
+
 import pandas as pd
+import streamlit as st
+
 
 def flow_text_from_csv(csv_file_path):
     if 'counter' not in st.session_state:
@@ -59,19 +61,23 @@ def flow_text_from_directory(folder_path):
     else: 
         # Get a list of text documents in the folder
         text_files = [os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.endswith('.txt')]
+        
+        if text_files == []:
+            st.write("Enter valid path")
+        else:
+            st.sidebar.subheader("List of documents in folder")
+            st.sidebar.write(text_files)
+
+            st.write(st.session_state.content)
+            st.write(f"Index: {st.session_state.counter}")
+
+            # Select text and show it on button click
+            text_path = text_files[st.session_state.counter]
+
+            with open(text_path, 'r') as file:
+                text = file.read()
+
+            col1, col2, _, _ = st.columns(4)
+            prev_btn = col1.button("Show prev text ⏭️", on_click=show_prev_text, args=([text]))
+            show_btn = col2.button("Show next text ⏭️", on_click=show_next_text, args=([text]))
     
-        st.sidebar.subheader("List of documents in folder")
-        st.sidebar.write(text_files)
-
-        st.write(st.session_state.content)
-        st.write(f"Index: {st.session_state.counter}")
-
-        # Select text and show it on button click
-        text_path = text_files[st.session_state.counter]
-        with open(text_path, 'r') as file:
-            text = file.read()
-
-        col1, col2, _, _ = st.columns(4)
-        prev_btn = col1.button("Show prev text ⏭️", on_click=show_prev_text, args=([text]))
-        show_btn = col2.button("Show next text ⏭️", on_click=show_next_text, args=([text]))
-   

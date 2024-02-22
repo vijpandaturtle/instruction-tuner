@@ -1,14 +1,27 @@
 import csv
 import os
+import openai
 
-# TODO : LLM API output for GPT-4 
+# OPENAI Config
+openai.api_key = "YOUR_OPENAI_API_KEY"
+model_name = "gpt-4-1106-preview"
+
 def generate_output(prompt_text):
-    return "Generated output for prompt: " + prompt_text
+    try:
+        # Make a call to the OpenAI API
+        response = openai.Completion.create(
+            engine=model_name,
+            prompt=prompt_text,
+            max_tokens=150,  # Adjust max_tokens as needed
+            n=1,  # Number of completions to generate
+            stop=None  # You can provide a list of strings to stop the generation
+        )
 
-# TODO : LLM API output for GPT-4V 
-def generate_output(prompt_text):
-    return "Generated output for prompt: " + prompt_text
-
+        # Extract and return the generated text from the response
+        generated_text = response['choices'][0]['text'].strip()
+        return generated_text
+    except Exception as e:
+        return None
 
 def submit_to_db(input_type, prompt, output_text):
     # Placeholder logic for submitting data to a CSV file
@@ -25,7 +38,7 @@ def submit_to_db(input_type, prompt, output_text):
     if input_type == "Text":
         data = [prompt, "<noinput>", output_text]
     elif input_type in ["Audio", "Image", "Video"]:
-        data = [f"File Path: {prompt}", "<noinput>", output_text]
+        data = [f"{prompt}", "<noinput>", output_text]
     else:
         st.warning("Invalid input_type")
 
@@ -33,6 +46,4 @@ def submit_to_db(input_type, prompt, output_text):
     with open(csv_file_path, 'a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(data)
-
-    #st.write(f"Submitted {input_type} data to the database:", data)
 

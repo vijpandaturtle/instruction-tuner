@@ -1,4 +1,8 @@
-# Instruction Tuner
+# 𝑰𝒏𝒔𝒕𝒓𝒖𝒄𝒕ion 𝑻𝒖𝒏𝒆𝒓
+
+<p align="center">
+  <img src="assets/blackboard.png" alt="Instruction Tuner" width="200">
+</p>
 
 This is a simple utility designed using the Streamlit library to facilitate the creation and annotation of instruction tuning datasets using multiple modalities. The tool allows you to import a folder containing the content you want to annotate and provides an easy-to-use interface for labeling.
 
@@ -42,13 +46,13 @@ This is a simple utility designed using the Streamlit library to facilitate the 
 4. Specify the folder path, and start annotating!
 
 
-## Screenshots
+<!-- ## Screenshots
 
 ![Screenshot 1](/screenshots/screenshot1.png)
 *Caption for Screenshot 1*
 
 ![Screenshot 2](/screenshots/screenshot2.png)
-*Caption for Screenshot 2*
+*Caption for Screenshot 2* -->
 
 ## Contributing
 

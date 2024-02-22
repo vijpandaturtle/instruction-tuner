@@ -1,10 +1,13 @@
-import streamlit as st
 import os
+
 import pandas as pd
-from src.utils import submit_to_db
+import streamlit as st
+
 from src.data_handlers import (flow_audio_from_directory,
-                                flow_images_from_directory,
-                                flow_video_from_directory)
+                               flow_images_from_directory,
+                               flow_video_from_directory)
+from src.utils import submit_to_db
+
 
 def main():
     st.title("Instruction Tuner")
