@@ -5,7 +5,7 @@ import streamlit as st
 
 from src.data_handlers import (flow_audio_from_directory,
                                flow_images_from_directory,
-                               flow_video_from_directory)
+                               flow_videos_from_directory)
 from src.utils import submit_to_db
 
 
@@ -17,27 +17,32 @@ def main():
     
     if 'file_path' not in st.session_state:
         st.session_state.file_path = None
-
+    
+    if 'disabled' not in st.session_state:
+        st.session_state.disabled = False
+   
     # Add sidebar with options
-    selected_option = st.sidebar.selectbox("Select Option", ["Image", "Audio", "Video"])
+    selected_option = st.sidebar.selectbox("Select Option", ["Image", "Audio", "Video"], disabled=st.session_state.disabled)
     folder_path = st.sidebar.text_input("Enter Folder Path:")
 
     if selected_option == "Image":
+        st.session_state.disabled = True
         if os.path.exists(folder_path):
             flow_images_from_directory(folder_path)
         else:
             st.write("Please enter a valid path.")
+   
     elif selected_option == "Audio":
-        st.session_state.content = None
+        st.session_state.disabled = True
         if os.path.exists(folder_path):
             flow_audio_from_directory(folder_path)
         else:
             st.write("Please enter a valid path.")
        
     elif selected_option == "Video":
-        st.session_state.content = None
+        st.session_state.disabled = True
         if os.path.exists(folder_path):
-            flow_video_from_directory(folder_path)
+            flow_videos_from_directory(folder_path)
         else:
             st.write("Please enter a valid path.")
       

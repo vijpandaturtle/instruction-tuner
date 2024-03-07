@@ -1,6 +1,7 @@
 import csv
 import os
 import openai
+import streamlit as st
 
 def generate_output(openai_api_key, prompt_text):
     openai.api_key = openai_api_key
@@ -32,14 +33,10 @@ def submit_to_db(input_type, prompt, output_text):
             writer = csv.writer(file)
             writer.writerow(header)
 
+    data = []
     # Prepare the data based on the modality
-    if input_type == "Text":
-        data = [prompt, "<noinput>", output_text]
-    elif input_type in ["Audio", "Image", "Video"]:
-        data = [f"{prompt}", "<noinput>", output_text]
-    else:
-        st.warning("Invalid input_type")
-
+    data = [prompt, "<noinput>", output_text]
+    
     # Append the data to the CSV file
     with open(csv_file_path, 'a', newline='') as file:
         writer = csv.writer(file)

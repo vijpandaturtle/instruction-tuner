@@ -35,7 +35,7 @@ def flow_text_from_csv(csv_file_path):
     col1, col2, _, _ = st.columns(4)
     # Select text and show it on button click
     text = text_data[st.session_state.counter]
-    prev_btn = col1.button("Show prev text ⏭️", on_click=show_prev_text, args=([text]))
+    prev_btn = col1.button("Show prev text ⏮️", on_click=show_prev_text, args=([text]))
     show_btn = col2.button("Show next text ⏭️", on_click=show_next_text, args=([text]))
     
 def flow_text_from_directory(folder_path):
@@ -78,6 +78,6 @@ def flow_text_from_directory(folder_path):
                 text = file.read()
 
             col1, col2, _, _ = st.columns(4)
-            prev_btn = col1.button("Show prev text ⏭️", on_click=show_prev_text, args=([text]))
+            prev_btn = col1.button("Show prev text ⏮️", on_click=show_prev_text, args=([text]))
             show_btn = col2.button("Show next text ⏭️", on_click=show_next_text, args=([text]))
     
