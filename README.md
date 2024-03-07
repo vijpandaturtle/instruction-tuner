@@ -43,16 +43,9 @@ This is a simple utility designed using the Streamlit library to facilitate the 
 
 3. Select your data source from the dropdown on the sidebar. 
 
-4. Specify the folder path, and start annotating!
+4. Specify the folder path/choose manual mode, and start annotating!
+5. After annotation is complete, the dataset will be available in the "database.csv" file.
 
-
-<!-- ## Screenshots
-
-![Screenshot 1](/screenshots/screenshot1.png)
-*Caption for Screenshot 1*
-
-![Screenshot 2](/screenshots/screenshot2.png)
-*Caption for Screenshot 2* -->
 
 ## Contributing
 
